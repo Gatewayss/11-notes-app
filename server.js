@@ -8,10 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 
+const data = JSON.parse(fs.readFileSync('./db/db.json'))
+
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
-    console.log(newNote);
-    fs.appendFile('./db/db.json', JSON.stringify(newNote), (err) => {
+    newNote.id = Math.floor(Math.random() * 1000000); 
+    data.push(newNote);
+    fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
         if (err) {
           console.error(err);
           res.status(500).send('Server Error');

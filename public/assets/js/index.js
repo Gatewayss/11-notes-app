@@ -1,8 +1,9 @@
-let noteTitle;
-let noteText;
-let saveNoteBtn;
-let newNoteBtn;
-let noteList;
+let noteTitle = document.querySelector('.note-title')
+let noteText = document.querySelector('#textarea')
+let saveNoteBtn = document.querySelector('#save-button')
+let newNoteBtn = document.querySelector('#add-button')
+let noteList = document.querySelector('.list-group')
+console.log(noteTitle, noteText);
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
@@ -76,6 +77,8 @@ const handleNoteSave = () => {
     renderActiveNote();
   });
 };
+
+newNoteBtn.addEventListener('click', handleNoteSave)
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {

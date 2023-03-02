@@ -1,11 +1,12 @@
 const fs = require('fs');
 const notes = require('../../db/db.json');
-const path = require('path');
-const router = require('express').Router();
+
 const express = require('express');
 const app = express();
+const path = require('path');
+const router = require('express').Router();
 
-app.post("/", (req, res) => {
+app.post("/notes", (req, res) => {
     const newNote = req.body;
     newNote.id = Math.floor(Math.random() * 1000000);
     notes.push(newNote);
@@ -21,7 +22,7 @@ app.post("/", (req, res) => {
   })
 
   
-router.get('/', (req, res) => {
+router.get('/notes', (req, res) => {
     fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
       if (err) {
         console.error(err);

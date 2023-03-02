@@ -9,6 +9,7 @@ const htmlroutes = require('./routes/htmlroutes/htmlroutes.js');
 
 app.use(express.json())
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 app.use('/', htmlroutes);
 app.use('api/notes', apiroutes);

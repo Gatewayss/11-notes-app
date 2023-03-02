@@ -1,10 +1,9 @@
 const fs = require('fs');
-const notes = require('db/db.json');
-
 const express = require('express');
 const app = express();
 const path = require('path');
 const router = require('express').Router();
+
 
 router.post('/notes', (req, res) => {
     const newNote = req.body;
@@ -18,12 +17,10 @@ router.post('/notes', (req, res) => {
         res.status(200).send('Note added successfully');
         res.json(notes)
       }
-    })
-  })
+    });
+  });
 
-  
 router.get('/notes', (req, res) => {
-  console.log(router.get);
     fs.readFile(('db/db.json'), 'utf8', (err, data) => {
       if (err) {
         console.error(err);

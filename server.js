@@ -1,35 +1,19 @@
-const express = require('express');
-const port = 3000;
-const db = require('./db/db.json')
+const data = require('./db/db.json');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-
+const express = require('express');
 const app = express();
+ 
+const apiroutes = require('./routes/apiroutes/apiroutes.js');
+const htmlroutes = require('./routes/htmlroutes/htmlroutes.js');
 
+app.use(express.json())
 app.use(bodyParser.json());
 
-const data = JSON.parse(fs.readFileSync('./db/db.json'))
+app.use('/', htmlroutes);
+app.use('api/notes', apiroutes);
 
-app.post('/api/notes', (req, res) => {
-    const newNote = req.body;
-    newNote.id = Math.floor(Math.random() * 1000000); 
-    data.push(newNote);
-    fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send('Server Error');
-        } else {
-          res.status(200).send('Note added successfully');
-        }
-    })
- })
-
-app.use(express.static('public'))
-
-app.get('/api/notes', (req, res) => {
-    res.send(db)
+app.listen(3000, () => {
+  console.log(`Example app listening on port 3000`)
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })

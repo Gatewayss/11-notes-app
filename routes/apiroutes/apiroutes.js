@@ -2,19 +2,20 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 const path = require('path');
-const router = require('express').Router();
+const router = require('express').Router(); 
 
+const readDB = fs.readFileSync('db/db.json')
+const data = JSON.parse(readDB)
 
 router.post('/notes', (req, res) => {
     const newNote = req.body;
     newNote.id = Math.floor(Math.random() * 1000000);
-    notes.push(newNote);
-    fs.writeFileSync(('db/db.json'), JSON.stringify(notes), (err) => {
+    data.push(newNote);
+    fs.writeFileSync(('db/db.json'), JSON.stringify(data), (err) => {
       if (err) {
         console.error(err);
         res.status(500).send('Server Error');
       } else {
-        res.status(200).send('Note added successfully');
         res.json(notes)
       }
     });

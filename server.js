@@ -1,4 +1,4 @@
-const data = require('./db/db.json');
+// const data = require('./db/db.json');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const express = require('express');
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.use('/', htmlroutes);
-app.use('api/', apiroutes);
+app.use('/api', apiroutes);
 
 app.listen(3000, () => {
   console.log(`Example app listening on port 3000`)

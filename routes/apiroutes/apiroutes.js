@@ -1,16 +1,16 @@
 const fs = require('fs');
-const notes = require('../../db/db.json');
+const notes = require('db/db.json');
 
 const express = require('express');
 const app = express();
 const path = require('path');
 const router = require('express').Router();
 
-app.post("/notes", (req, res) => {
+router.post('/notes', (req, res) => {
     const newNote = req.body;
     newNote.id = Math.floor(Math.random() * 1000000);
     notes.push(newNote);
-    fs.writeFileSync('../../db/db.json', JSON.stringify(notes), (err) => {
+    fs.writeFileSync(('db/db.json'), JSON.stringify(notes), (err) => {
       if (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -23,7 +23,8 @@ app.post("/notes", (req, res) => {
 
   
 router.get('/notes', (req, res) => {
-    fs.readFile(path.join(__dirname, '..', 'db', 'db.json'), 'utf8', (err, data) => {
+  console.log(router.get);
+    fs.readFile(('db/db.json'), 'utf8', (err, data) => {
       if (err) {
         console.error(err);
         res.status(500).send('Server Error');

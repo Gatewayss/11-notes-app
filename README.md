@@ -2,7 +2,9 @@
 
 This is a simple note-taking application that allows users to create and save notes. When the user clicks on the link to the notes page, they will be presented with a page that has two columns. The left-hand column will display a list of existing notes, and the right-hand column will have empty fields for entering a new note title and text. Creating a new note is easy by clicking on the plus icon to the right side. To save a note you click the save icon to the left of the notes icon.  The left hand column displays the notes made previously. 
 
-This application is deployed on Heroku and can be accessed through the link provided. [click here!]()
+![app dashboard](public/assets/img/app.png)
+
+This application is deployed on Heroku and can be accessed through the link provided. [click here!](https://a11-notes-app.herokuapp.com/notes)
 
 # Installation 
 
